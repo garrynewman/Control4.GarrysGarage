@@ -1,0 +1,130 @@
+<devicedata>
+
+	<name>Garry's Garage Door</name>
+	<model>Door</model>
+	<creator>Garry Newman</creator>
+	<created>06/13/2016 10:00</created>
+	<modified>04/25/2018 12:00</modified>
+  	<manufacturer>Garry Newman</manufacturer>
+
+  	<version>10</version>
+
+	<small image_source="c4z">icons/device_sm.png</small>
+	<large image_source="c4z">icons/device_lg.png</large>
+
+	<control>lua_gen</control>
+	<driver>DriverWorks</driver>
+	<copyright>MIT License</copyright>
+
+	<capabilities>
+		<navigator_display_option proxybindingid="5001">
+			<display_icons>
+				<Icon height="88" width="88">controller://driver/GarrysGarage/icons/garage-closed.png</Icon>
+				<state id="Closed">
+					<Icon height="88" width="88">controller://driver/GarrysGarage/icons/garage-closed.png</Icon>
+				</state>
+				<state id="Open">
+					<Icon height="88" width="88">controller://driver/GarrysGarage/icons/garage-open.png</Icon>
+				</state>
+				<state id="Half">
+					<Icon height="88" width="88">controller://driver/GarrysGarage/icons/garage-half.png</Icon>
+				</state>
+				<state id="Opening">
+					<Icon height="88" width="88">controller://driver/GarrysGarage/icons/garage-opening.png</Icon>
+				</state>
+				<state id="Closing">
+					<Icon height="88" width="88">controller://driver/GarrysGarage/icons/garage-closing.png</Icon>
+				</state>
+			</display_icons>
+		</navigator_display_option>
+
+	</capabilities>
+
+	<config>
+
+		<script file="driver.lua"></script>
+
+		<properties>
+			<property>
+				<name>Current State</name>
+				<type>STRING</type>
+				<default>Unset</default>
+				<readonly>true</readonly>
+			</property>
+		</properties>
+
+	</config>
+
+  <proxies>
+		<proxy proxybindingid="5001" name="Scenario" primary="True" image_source="c4z" large_image="icons/device_lg.png" small_image="icons/device_sm.png">uibutton</proxy>
+	</proxies>
+
+  <connections>
+
+  	<connection>
+		<id>5001</id>
+		<facing>6</facing>
+		<connectionname>UIBUTTON</connectionname>
+		<type>2</type>
+		<consumer>False</consumer>
+		<audiosource>True</audiosource>
+		<videosource>True</videosource>
+		<linelevel>True</linelevel>
+		<classes>
+			<class>
+				<classname>UIBUTTON</classname>
+			</class>
+		</classes>
+	</connection>
+
+	<connection>
+		<id>1</id>
+		<facing>6</facing>
+		<connectionname>Garage Door Relay</connectionname>
+		<type>1</type>
+		<consumer>True</consumer>
+		<audiosource>False</audiosource>
+		<videosource>False</videosource>
+		<linelevel>True</linelevel>
+		<classes>
+			<class>
+				<classname>RELAY</classname>
+			</class>
+		</classes>
+	</connection>
+
+	<connection>
+		<id>2</id>
+		<facing>6</facing>
+		<connectionname>Partially Open</connectionname>
+		<type>1</type>
+		<consumer>True</consumer>
+		<audiosource>False</audiosource>
+		<videosource>False</videosource>
+		<linelevel>True</linelevel>
+		<classes>
+			<class>
+				<classname>CONTACT_SENSOR</classname>
+			</class>
+		</classes>
+	</connection>
+
+	<connection>
+		<id>3</id>
+		<facing>6</facing>
+		<connectionname>Fully Open</connectionname>
+		<type>1</type>
+		<consumer>True</consumer>
+		<audiosource>False</audiosource>
+		<videosource>False</videosource>
+		<linelevel>True</linelevel>
+		<classes>
+			<class>
+				<classname>CONTACT_SENSOR</classname>
+			</class>
+		</classes>
+	</connection>
+
+  </connections>
+
+</devicedata>
