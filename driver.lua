@@ -3,8 +3,7 @@ do
 	PartiallyOpen = false;
 	FullyOpen = false;
 	RelayTimer = -1;
-	C4:AddVariable( "State", State, "STRING" )
-	UpdateImageState()
+	C4:AddVariable( "State", State, "STRING", true, false )
 end
 
 --
@@ -45,6 +44,9 @@ function UpdateState( newState )
 	-- Show the state on the driver dashboard
 	C4:UpdateProperty( 'Current State', State )
 
+	-- Update the variable
+	C4:SetVariable( 'State', State )
+
 end
 
 function ReceivedFromProxy (idBinding, strCommand, tParams)
@@ -67,6 +69,13 @@ function ReceivedFromProxy (idBinding, strCommand, tParams)
 			--
 			C4:SendToProxy (1, "OPEN", '')
 			C4:SendToProxy (1, "CLOSE", '')
+
+			--
+			-- If we were opening when we clicked again mark as closed
+			--
+			if ( State == "Opening" ) then 
+				UpdateState( "Closed" )
+			end
 
 			--
 			-- If we started off closed, show the Opening state to give some immediate feedback
