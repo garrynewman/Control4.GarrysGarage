@@ -1,9 +1,10 @@
 do 
-	State = "Half";
+	State = "Closed";
 	PartiallyOpen = false;
 	FullyOpen = false;
 	RelayTimer = -1;
 	C4:AddVariable( "State", State, "STRING" )
+	UpdateImageState()
 end
 
 --
